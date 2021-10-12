@@ -6,14 +6,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Jadwal</a>
+                <a class="nav-link {{ Request::is('jadwal*') ? 'active' : '' }}" href="/jadwal">Jadwal</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Informasi</a>
+                <a class="nav-link {{ Request::is('informasi*') ? 'active' : '' }}" href="/informasi">Informasi</a>
             </li>
             {{-- <li class="nav-item">
                 <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -22,7 +22,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a href="/login"
-                    class="nav-link {{ Request::is('login') || Request::is('register') ? 'active' : '' }}"><i
+                    class="nav-link {{ Request::is('login*') || Request::is('register') ? 'active' : '' }}"><i
                         class="bi bi-box-arrow-in-right"></i>Login</a>
             </li>
         </ul>
