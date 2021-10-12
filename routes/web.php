@@ -1,11 +1,16 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Http\Request;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +60,17 @@ Route::get('/info', function () {
 Route::get('/jdwl', [JadwalController::class, 'index']);
 
 Route::get('/admin', [AdminController::class, 'index']);
+
+Route::get('/getUser', function (Request $request) {
+    if ($request->ajax()) {
+        $data = User::latest()->get();
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                return $actionBtn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+})->name('user.index');
