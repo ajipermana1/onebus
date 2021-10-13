@@ -13,7 +13,9 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        return view('second.jdwl.index', []);
+        return view('second.jdwl.index', [
+            'title' => 'ADMIN|JADWAL'
+        ]);
     }
 
     /**

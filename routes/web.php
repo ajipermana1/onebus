@@ -49,17 +49,22 @@ Route::post('/register', [RegisterController::class, 'create']);
 Route::get('/wellcome', [FrontendController::class, 'index']);
 
 Route::get('/second', function () {
-    return view('second.tsdash', []);
+    return view('second.tsdash', [
+        'title' => 'ADMIN'
+    ]);
 })->middleware('auth');
 
 
 Route::get('/info', function () {
-    return view('second.info.index', []);
+    return view('second.info.index', [
+        'title' => 'INFORMASI'
+    ]);
 });
 
 Route::get('/jdwl', [JadwalController::class, 'index']);
+Route::resource('admin', AdminController::class);
 
-Route::get('/admin', [AdminController::class, 'index']);
+// Route::get('/admin', [AdminController::class, 'index']);
 
 Route::get('/getUser', function (Request $request) {
     if ($request->ajax()) {

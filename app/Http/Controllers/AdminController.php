@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +18,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('second.admin.index', []);
+
+        return view('second.admin.index', [
+            'users' => User::all(),
+            'title' => 'ADMIN'
+        ]);
     }
 
     /**
@@ -24,7 +32,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('second.admin.create', [
+            'title' => 'ADMIN|CREATE',
+        ]);
     }
 
     /**
@@ -35,7 +45,19 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => ['required', 'min:5'],
+            'username' => ['required', 'min:5', 'unique:users'],
+            'email' => ['required', 'email'],
+
+
+        ]);
+        $validateData['password'] = Hash::make($request->password);
+
+
+        User::create($validateData);
+
+        return redirect('/admin')->with('success', 'New user has been save!');
     }
 
     /**
@@ -44,9 +66,12 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        return view('second.admin.detail', [
+            'title' => 'ADMIN|DETAIL',
+            'user' => User::find($id)
+        ]);
     }
 
     /**
@@ -55,9 +80,12 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        return view('second.admin.edit', [
+            'title' => 'ADMIN|EDIT',
+            'user' => User::find($id)
+        ]);
     }
 
     /**
@@ -67,9 +95,37 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $rulesEmail = [];
+        $rulesUsername = [];
+
+
+        if ($request->username == $user->username) {
+            $rulesUsername = ['required'];
+        } else {
+            $rulesUsername =  ['required', 'min:5', 'unique:users'];
+        }
+
+        if ($request->email == $user->email) {
+            $rulesEmail = ['required', 'email'];
+        } else {
+            $rulesEmail = ['required', 'email', 'unique:users'];
+        }
+
+        $rules = [
+            'name' => ['required', 'min:5'],
+            'username' => $rulesUsername,
+            'email' => $rulesEmail
+
+        ];
+        $validateData = $request->validate($rules);
+
+        DB::table('users')
+            ->where('id', $id)
+            ->update($validateData);
+        return redirect('/admin')->with('success', 'User has been updated!');
     }
 
     /**
@@ -78,8 +134,10 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/admin')->with('success', 'User has been deleted!');
     }
 }
