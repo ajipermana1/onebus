@@ -49,10 +49,12 @@ class AdminController extends Controller
             'name' => ['required', 'min:5'],
             'username' => ['required', 'min:5', 'unique:users'],
             'email' => ['required', 'email'],
+            'password' => ['required']
 
 
         ]);
         $validateData['password'] = Hash::make($request->password);
+
 
 
         User::create($validateData);

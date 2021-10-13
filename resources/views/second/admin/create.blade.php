@@ -11,22 +11,46 @@
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" autofocus>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror " name="name" id="name"
+                        autofocus value="{{ old('name') }}">
+                    @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username" id="username">
+                    <input type="text" class="form-control @error('username') is-invalid @enderror" name="username"
+                        id="username" value="{{ old('username') }}">
+                    @error('username')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control" name="email" id="email">
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" id="email"
+                        value="{{ old('email') }}">
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password" id="password">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror " name="password"
+                        id="password" value="{{ old('password') }}">
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <a href="/admin" class="btn btn-secondary">Back</a>
