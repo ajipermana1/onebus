@@ -25,7 +25,9 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        //
+        return view('second.jdwl.create', [
+            'title' => 'JADWAL | CREATE'
+        ]);
     }
 
     /**

@@ -60,8 +60,9 @@ Route::get('/info', function () {
         'title' => 'INFORMASI'
     ]);
 });
+Route::resource('/jdwl', JadwalController::class);
 
-Route::get('/jdwl', [JadwalController::class, 'index']);
+// Route::get('/jdwl', [JadwalController::class, 'index']);
 Route::resource('admin', AdminController::class);
 
 // Route::get('/admin', [AdminController::class, 'index']);
