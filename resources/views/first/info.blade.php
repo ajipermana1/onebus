@@ -1,5 +1,5 @@
 @extends('main.tfdash')
 
 @section('content')
-    <h2> It's informasi view</h2>
+    <h2 class="text-center"> Cooming soon...</h2>
 @endsection

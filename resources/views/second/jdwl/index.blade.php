@@ -1,57 +1,72 @@
 @extends('main.tsdash')
 
 @section('content')
+    <div class="row">
+        <div class="col-lg-12">
 
 
 
-    <h2 class="text-center">Schedule Management</h2>
 
-    <a href="/jdwl/create" class="btn btn-info my-2">Add New Schecedule</a>
-    <div class="input-group my-2">
 
-        <input type="text" aria-label="First name" class="form-control" placeholder="Nama Buss" autofocus>
-        <input type="text" aria-label="Last name" class="form-control" placeholder="Nama Statiun">
-        <input type="text" aria-label="First name" class="form-control" placeholder="Tujuan">
-        <div class="input-group-append">
-            <input class="btn btn-outline-success" type="button" value="Search">
-            <form>
-                {{-- <input class="button" type="button" value="Cari"> --}}
+
+
+
+
+            <h2 class="text-center">Schedule Management</h2>
+
+            <a href="/jdwl/create" class="btn btn-info my-2">Add New Schecedule</a>
+            <form class="d-inline">
+                <div class="input-group my-2">
+
+                    <input type="text" aria-label="First name" class="form-control" placeholder="Dari" autofocus>
+                    <input type="text" aria-label="Last name" class="form-control" placeholder="Ke">
+                    <input type="text" aria-label="First name" class="form-control" placeholder="Tanggal Pergi">
+                    <input type="text" aria-label="First name" class="form-control" placeholder="Tanggal Pulang"
+                        aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success" type="submit" id="button-addon2">Button</button>
+                        {{-- <input class="button" type="button" value="Cari"> --}}
+                    </div>
             </form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Jam Berangkat</th>
+                        <th scope="col">Jam Pulang</th>
+                        <th scope="col">Titik Keberangkatan</th>
+                        <th scope="col">Titik Penurunan</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach ($buses as $bus)
+
+
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $bus->nama }}</td>
+                            <td>{{ $bus->jam_brkt }}</td>
+                            <td>{{ $bus->jam_plg }}</td>
+                            <td> {{ $bus->asal }}</td>
+                            <td>{{ $bus->tujuan }}</td>
+                            <td>
+                                <a href="" class="badge badge-info"><i class="bi bi-eye"></i></a>
+                                <a href="" class="badge badge-secondary"><i class="bi bi-pen"></i></a>
+                                <a href="" class="badge badge-danger"><i class="bi bi-trash"></i></a>
+                            </td>
+
+                        </tr>
+                    @endforeach
+
+
+                </tbody>
+            </table>
+
         </div>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Rincian</th>
-                <th scope="col">Waktu Keberangkatan</th>
-                <th scope="col">Harga Tiket</th>
-                <th scope="col">Titik Keberangkatan</th>
-                <th scope="col">Titik Penurunan</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Jadwal Sinar Jaya Depok ke Purworejo</td>
-                <td>07.00/10.00</td>
-                <td>Rp140.000-Rp160.000</td>
-                <td> Terminal Jatijajar</td>
-                <td>Bagelen, Kutoarjo, Pendowo, Purworejo, Pasuruan</td>
-
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jadwal Sinar Jaya Purworejo ke Jakarta</td>
-                <td> 14:40 | 15:30 | 15:35 | 15:55 | 16:00 | 16:10</td>
-                <td>Rp135.000-Rp150.000</td>
-                <td> Kutoarjo, Pendowo, Purworejo, Pasuruan</td>
-                <td>Cibubur, Terminal Kalideres, Terminal Kampung Rambutan, Terminal Lebak Bulus, Terminal Pulo Gebang</td>
-
-            </tr>
-
-        </tbody>
-    </table>
 
 
 @endsection

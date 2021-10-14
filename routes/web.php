@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\User;
+use App\Models\Bus;
+
 use Illuminate\Support\Facades\Route;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Controllers\AdminController;
@@ -28,7 +30,9 @@ Route::get('/', function () {
     return view('first.first');
 });
 Route::get('/jadwal', function () {
-    return view('first.jadwal');
+    return view('first.jadwal', [
+        'buses' => Bus::all()
+    ]);
 });
 Route::get('/informasi', function () {
 
