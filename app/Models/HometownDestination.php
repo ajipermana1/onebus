@@ -4,17 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
 
-class HometownDestination extends Pivot
+class HometownDestination extends Model
 {
     //
     protected $table      = 'hometown_destination';
     protected $primaryKey = 'id';
 
     protected $guarded = [];
-
-    public function Bus()
-    {
-        return $this->hasMany(Bus::class);
-    }
 }

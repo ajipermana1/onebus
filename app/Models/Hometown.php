@@ -12,8 +12,9 @@ class Hometown extends Model
     {
         return $this->belongsToMany(Destination::class);
     }
-    public function terminalAsal()
+
+    public function rutes()
     {
-        return $this->hasMany(TerminalAsal::class);
+        return $this->hasMany(Rute::class);
     }
 }

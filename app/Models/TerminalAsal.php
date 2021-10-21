@@ -14,6 +14,6 @@ class TerminalAsal extends Model
     use HasFactory;
     public function hometowns()
     {
-        return $this->belongsTo(Hometown::class);
+        return $this->hasMany(Hometown::class);
     }
 }

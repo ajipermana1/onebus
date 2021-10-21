@@ -30,6 +30,17 @@
 <script src="/asset/js/poper.min.js"">
   </script>
 <script src="/asset/js/bootstrap.min.js"></script>
+
+<div class="container">
+  <footer class="fixed-bottom bg-light">
+    <p class="text-center">Developed with <i class="bi bi-heart"></i> by <a href="https://instagram.com.ajileutik_.">Aji Permana</a></p>
+
+  </footer>
+
+</div>
+
+
+
 </body>
 
 </html>

@@ -13,9 +13,12 @@
 </head>
 
 <body>
-    @include('main.snav')
+    <div class="containter mb-5">
 
-    <div class="container mb-4">
+        @include('main.snav')
+    </div>
+
+    <div class="container pt-3">
         @yield('content')
     </div>
 
@@ -30,6 +33,14 @@
 <script src="/asset/js/poper.min.js"">
   </script>
 <script src="/asset/js/bootstrap.min.js"></script>
+<div class="container">
+    <footer class="fixed-bottom bg-success">
+        <p class="text-center pt-1">Developed with <i class="bi bi-heart"></i> by <a
+                href="https://instagram.com/ajileutik_">Aji Permana</a></p>
+
+    </footer>
+
+</div>
 </body>
 
 </html>

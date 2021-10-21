@@ -2,6 +2,10 @@
 
 use App\Models\User;
 use App\Models\Bus;
+use App\Models\Hometown;
+
+use App\Models\Destination;
+
 
 use Illuminate\Support\Facades\Route;
 use Yajra\DataTables\Facades\DataTables;
@@ -31,7 +35,15 @@ Route::get('/', function () {
 });
 Route::get('/jadwal', function () {
     return view('first.jadwal', [
-        'buses' => Bus::all()
+        'buses' => Bus::all(),
+        'hometowns' => Hometown::all(),
+        'destinations' => Destination::all()
+    ]);
+});
+Route::get('/jadwal/{bus:id}', function ($id) {
+    return view('first.show', [
+        'title' => 'JADWAL | DETAIL',
+        'bus' => Bus::find($id)
     ]);
 });
 Route::get('/informasi', function () {
@@ -64,10 +76,10 @@ Route::get('/info', function () {
         'title' => 'INFORMASI'
     ]);
 });
-Route::resource('/jdwl', JadwalController::class);
+Route::resource('/jdwl', JadwalController::class)->middleware('auth');
 
 // Route::get('/jdwl', [JadwalController::class, 'index']);
-Route::resource('admin', AdminController::class);
+Route::resource('admin', AdminController::class)->middleware('admin');
 
 // Route::get('/admin', [AdminController::class, 'index']);
 

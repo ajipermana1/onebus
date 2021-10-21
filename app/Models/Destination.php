@@ -16,4 +16,8 @@ class Destination extends Model
     {
         return $this->hasMany(TerminalTujuan::class);
     }
+    public function rutes()
+    {
+        return $this->hasMany(Rute::class);
+    }
 }

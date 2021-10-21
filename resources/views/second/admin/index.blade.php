@@ -2,7 +2,7 @@
 
 
 @section('content')
-   
+
 
 
 
@@ -17,7 +17,7 @@
         </div>
     @endif
 
-    <a href="/admin/create" class="btn btn-primary my-2">Create New User</a>
+    <a href="/admin/create" class="btn btn-outline-primary btn-sm my-2">Create New User</a>
 
     <table class="table">
         <thead>

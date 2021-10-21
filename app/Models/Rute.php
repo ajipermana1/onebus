@@ -13,8 +13,16 @@ class Rute extends Model
 
     protected $guarded = [];
 
-    public function bus()
+    public function buses()
     {
         return $this->hasMany(Bus::class);
+    }
+    public function destinations()
+    {
+        return $this->belongsTo(Destination::class, 'id_kota_tujuan');
+    }
+    public function hometowns()
+    {
+        return $this->belongsTo(Hometown::class, 'id_kota_asal');
     }
 }

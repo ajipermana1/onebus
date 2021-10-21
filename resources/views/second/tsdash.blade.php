@@ -1,6 +1,6 @@
 @extends('main.tsdash')
 
 @section('content')
-    <h1>You're in, Boss</h1>
+    <h1>Wellcome back, {{ auth()->user()->name }}</h1>
 
 @endsection

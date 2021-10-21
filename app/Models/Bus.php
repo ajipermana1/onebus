@@ -16,8 +16,8 @@ class Bus extends Model
     {
         return $this->belogsTo(HometownDestination::class);
     }
-    public function rute()
+    public function rutes()
     {
-        return $this->belongsTo(Rute::class);
+        return $this->belongsTo(Rute::class, 'id_hometown_destination');
     }
 }
